@@ -1,0 +1,80 @@
+plugins {
+    id "com.android.library" version "9.4.0"
+    id "cn.lalaki.central" version "3.0.3"
+}
+
+def projectUrl = "https://github.com/lalakii/AlertDialogFragment"
+def projectName = "AlertDialogFragment"
+def projectDesc = "AlertDialogFragment"
+
+android {
+    namespace = "cn.lalaki.alert"
+    compileSdk = 37
+    publishing {
+        singleVariant("release")
+    }
+}
+group = "cn.lalaki.alert"
+version = "1.0.0"
+
+dependencies {
+    api "androidx.appcompat:appcompat:1.8.0"
+}
+
+publishing {
+    repositories {
+        mavenLocal()
+    }
+    publications {
+        alertDialogFragment(MavenPublication) {
+            afterEvaluate {
+                from components.release
+            }
+            pom {
+                url.set(projectUrl)
+                name.set(projectName)
+                description.set(projectDesc)
+                inceptionYear.set("2026")
+
+                licenses {
+                    license {
+                        name.set("The MIT License")
+                        url.set("https://opensource.org/license/mit")
+                    }
+                }
+
+                developers {
+                    developer {
+                        id.set("lalaki.cn")
+                        name.set("lalaki")
+                        email.set("i@lalaki.cn")
+                        roles.set(List.of("developer"))
+                        timezone.set("Asia/Chongqing")
+                        organization.set("lalaki")
+                        organizationUrl.set("https://lalaki.cn")
+                    }
+                }
+
+                issueManagement {
+                    url.set("${projectUrl}/issues")
+                    system.set("Github")
+                }
+
+                organization {
+                    name.set("lalaki")
+                    url.set("https://lalaki.cn")
+                }
+
+                scm {
+                    connection.set("scm:git:${projectUrl}.git")
+                    developerConnection.set("scm:git:${projectUrl}.git")
+                    url.set(projectUrl)
+                }
+            }
+        }
+    }
+}
+
+centralPortalPlus {
+    tokenXml = uri("D:\\user_token.xml")
+}

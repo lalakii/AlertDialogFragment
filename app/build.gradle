@@ -1,0 +1,55 @@
+plugins {
+    id "com.android.application" version "9.4.0"
+}
+
+android {
+    namespace = "cn.lalaki.af2.dialog"
+    compileSdkPreview = "CinnamonBun"
+    buildToolsVersion = "37.0.0"
+    ndkVersion = "29.0.14206865"
+    defaultConfig {
+        minSdk = 26
+        targetSdk = 37
+        applicationId "cn.lalaki.af2.dialog"
+        versionCode 1
+        versionName "1.0.0"
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_24
+        targetCompatibility JavaVersion.VERSION_24
+    }
+    signingConfigs {
+        release {
+            enableV1Signing = false
+            enableV2Signing = true
+            enableV3Signing = true
+            enableV4Signing = true
+            keyAlias = "0"
+            keyPassword = "0"
+            storePassword = "0"
+            storeFile = file("D:\\lalaki-new-1.jks")
+        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            shrinkResources = false
+            jniDebuggable false
+            debuggable true
+            isDefault = true
+            // proguardFiles getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
+            signingConfig = signingConfigs.release
+            optimization {
+                enable = true
+            }
+            vcsInfo.include = false
+        }
+    }
+    dependenciesInfo {
+        includeInApk = false
+        includeInBundle = false
+    }
+}
+dependencies {
+    implementation(platform(project(":alert-dialog-fragment")))
+}
